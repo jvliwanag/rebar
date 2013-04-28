@@ -71,7 +71,8 @@ run_test(TestDir, Config, _File) ->
             Output = " 2>&1 | tee -a " ++ RawLog
     end,
 
-    rebar_utils:sh(Cmd ++ Output, [{env,[{"TESTDIR", TestDir}]}]),
+    rebar_utils:sh(Cmd ++ Output,[{env,[{"TESTDIR", TestDir}]},
+                                  return_on_error]),
     check_log(Config, RawLog).
 
 
